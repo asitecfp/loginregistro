@@ -1,0 +1,30 @@
+if($check02=="act")
+{
+	$usuari0 = $_SESSION['usuario'];
+    $validar_perfil = mysqli_query($conexion, "SELECT * FROM usuario WHERE 
+	corusu01='$usuari0' and ".$nomperfil."='$pinusu0' and stausu01='activo'");
+	if(mysqli_num_rows($validar_perfil) > 0)
+	{
+		echo '
+			<script>
+				window.location ="../index.php";
+			</script>
+		';
+		if($perfil1!="")
+		{$_SESSION['perfil'] = $perfil1;}
+       	if($perfil2!="")
+		{$_SESSION['perfil'] = $perfil2;}
+       	if($perfil3!="")
+		{$_SESSION['perfil'] = $perfil3;}
+
+	}else{
+		$perfact="b13nV3gV5-F50rY8dFVT";
+		echo '
+			<script>
+				alert("Verifique Pin o Perfil");
+			window.location ="../index.php";
+				//window.location ="../index.php?perfact='.$perfact.'";
+			</script>
+		';
+	}
+}

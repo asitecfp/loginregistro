@@ -1,0 +1,41 @@
+<?php
+$mysqli = new mysqli("localhost", "root", "", "bnucled");
+
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
+//$resultado = $mysqli->query("SELECT idecat07, nomcat07 FROM catcon07 ORDER BY idecat07 ASC");
+//$resultado = $mysqli->query("SELECT catcon07.nomcat07, maecon04.catcon04 FROM catcon07 INNER JOIN maecon04 ON catcon07.nomcat07=maecon04.catcon04 WHERE maecon04.catcon04 = nomcat07");
+$resultado  = $mysqli->query("SELECT idecat07, nomcat07 FROM catcon07 ORDER BY idecat07 ASC");
+$resultado .= $mysqli->query("SELECT idecon04, covcon04 FROM maecon04 ORDER BY idecon04 ASC");
+
+$resultado->data_seek(0);
+//$resultado2->data_seek(0);
+
+while ($fila = $resultado->fetch_assoc()) {
+    echo '
+<div class="peliculas-populares">
+            
+    <div class="contenedor-titulos-controles">
+        <h3>'.$fila['nomcat07'].'</h3>
+        <div class="indicadores">
+            <button></button>
+            <button></button>
+        </div>
+    </div>
+
+    <div class="contenedor-principal">
+        <button role="button" id="flecha-izquierda" class="flecha-izquierda"><</button>
+
+        <div class="contenedor-carrousel">
+            <div class="carrouse
+
+            </div>
+        </div>
+
+            <button role="button" id="flecha-derecha" class="flecha-derecha">></button>
+    </div>
+</div>';
+}
+?>

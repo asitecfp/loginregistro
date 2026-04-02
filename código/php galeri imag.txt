@@ -1,0 +1,36 @@
+  <?php
+                require 'config.php';
+                require 'GestorArchivos.php'; 
+                
+                $conexion = new mysqli($servidor, $usuarioBD, $passwordBD, $baseDatos);
+                
+                $consulta = "SELECT nomcon04, covcon04 FROM maecon04 ORDER BY idecon04";
+                $resultado = $conexion->query($consulta);
+
+                // Muestra las imagenes de la galeria.
+                while($filas = $resultado->fetch_array(MYSQLI_ASSOC)) {
+                    // Se comprueba que existan las imagenes
+                    if (file_exists("assets/imagen/".$filas["covcon04"]."/".$filas["nomcon04"])){
+                        echo'<a href="assets/imagen/'.$filas['covcon04'].'/'.$filas['nomcon04'].'" rel="lightbox[galeria]" title="'.$filas['nomcon04'].'"><img src="assets/imagen/'.$filas['directorio'].'/'.$filas['archivo'].'"/></a>';
+                    }                    
+                }
+            ?>
+
+
+  <?php
+                require 'config.php';
+                require 'GestorArchivos.php'; 
+                
+                $conexion = new mysqli($servidor, $usuarioBD, $passwordBD, $baseDatos);
+                
+                $consulta = "SELECT archivo, directorio FROM galeriaimagenes ORDER BY id";
+                $resultado = $conexion->query($consulta);
+
+                // Muestra las imagenes de la galeria.
+                while($filas = $resultado->fetch_array(MYSQLI_ASSOC)) {
+                    // Se comprueba que existan las imagenes
+                    if (file_exists("imagenes/".$filas["directorio"]."/".$filas["archivo"])){
+                        echo'<a href="imagenes/'.$filas['directorio'].'/'.$filas['archivo'].'" rel="lightbox[galeria]" title="'.$filas['archivo'].'"><img src="imagenes/'.$filas['directorio'].'/'.$filas['archivo'].'"/></a>';
+                    }                    
+                }
+            ?>

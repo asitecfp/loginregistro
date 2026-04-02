@@ -1,0 +1,2 @@
+ffmpeg.exe -i l:/cont/series/902.mp4 -c:v h264_nvenc -crf 35 -gpu 0 -vf scale=854:480 -b:v 598k -c:a aac -movflags faststart l:/cont/series/sd/902.mp4
+ffmpeg.exe -i l:/cont/series/902.mp4 -c:v h264_nvenc -crf 35 -gpu 0 -vf scale=1280:720 -b:v 1500k -c:a aac -movflags faststart l:/cont/series/hd/902.mp4

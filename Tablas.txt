@@ -1,0 +1,18 @@
+Películas
+id película
+titulo / nombre película
+duración
+género1
+género2
+género3
+sinopsis
+categoría usuario	tipo de usuario que podrá verla
+productora
+año estreno
+clasificación
+nombre cover
+url cover
+url video
+
+usuario
+fecha registro

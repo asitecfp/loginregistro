@@ -1,0 +1,138 @@
+#################################################################
+FUNCION PARA CARGAR LAS PELICULAS CON COVER SOLO IMAGENES########
+#################################################################
+
+
+
+function cargacont(){
+               $mysqli = new mysqli("localhost", "root", "12345678", "bnucled");
+    if ($mysqli->connect_errno) {
+        echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+
+    $resultado = $mysqli->query("SELECT idecat07, nomcat07 FROM catcon07 ORDER BY idecat07 ASC");
+    $resultado->data_seek(0);
+
+    while ($fila = $resultado->fetch_assoc()) {
+        echo '
+            <div class="peliculas-populares">
+            
+                <div class="contenedor-titulos-controles">
+                    <h3>'.$fila['nomcat07'].'</h3>
+                    <div class="indicadores">
+                      
+                    </div>
+                </div>
+
+            <div class="contenedor-principal">
+                
+                <button role="button" id="flecha-izquierda" class="flecha-izquierda"><</button>
+
+                <div class="contenedor-carrousel">
+                    <div class="carrousel">'
+            ;
+            
+                            $resultado2 = $mysqli->QUERY("SELECT idecon04, nomcon04, clacon04, tipcon04, durcon04, procon04, vistas04,
+                            aprcon04, descon04, arccon04, precon04, covcon04, sincon04 FROM maecon04 WHERE catcon04='".$fila['nomcat07']."' ORDER BY idecon04 ASC");
+                            $resultado2->data_seek(0);
+                            $guia2 = "";
+                        while ($fila2 = $resultado2->fetch_assoc()) {
+                            $contenidovid = $fila2['arccon04'];
+                            $contenidoimg = $fila2['nomcon04'];
+                           $contenidolg = $fila2['nomcon04'];
+                            $productor = $fila2['procon04'];
+                            $contenidopri = $fila2['precon04'];
+                            $contenidosin = $fila2['sincon04'];
+                            $guia2 = $guia2+1;
+                            $val = $guia2;
+                        echo '
+                            <div onclick="si('.$val.')" class="pelicula" id="aa">
+                            <a href="#" id="cover"><img src="assets/imagen/'.$fila2['covcon04'].'.jpg" alt="" ></a>
+                                
+                                <p id="title" value="'.$contenidovid.'"></p>
+                                <p id="title" value="'.$contenidoimg.'"></p>
+                                <p id="title" value="'.$contenidolg.'"></p>
+                                <p id="title" value="'.$productor.'"></p>
+                                <p id="title" value="'.$contenidopri.'"></p>
+                                <p id="sinop" value="'.$contenidosin.'">'.$contenidosin.'</p>
+                                <p id="title" value="'.$guia2.'"></p>
+                            </div>
+                   ';
+                }
+        echo '
+                    </div>
+                </div>
+
+                <button role="button" id="flecha-derecha" class="flecha-derecha" >></button>
+            </div>
+</div>
+            ';
+}
+}
+?>
+
+
+#################################################################
+FUNCION PARA CARGAR LAS PELICULAS CON COVER SOLO IMAGENES########
+#################################################################
+
+function cargacont(){
+               $mysqli = new mysqli("localhost", "root", "12345678", "bnucled");
+    if ($mysqli->connect_errno) {
+        echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+    }
+
+    $resultado = $mysqli->query("SELECT idecat07, nomcat07 FROM catcon07 ORDER BY idecat07 ASC");
+    $resultado->data_seek(0);
+
+    while ($fila = $resultado->fetch_assoc()) {
+        echo '
+            <div class="peliculas-populares">
+            
+                <div class="contenedor-titulos-controles">
+                    <h3>'.$fila['nomcat07'].'</h3>
+                    <div class="indicadores">
+                      
+                    </div>
+                </div>
+
+            <div class="contenedor-principal">
+                
+                <button role="button" id="flecha-izquierda" class="flecha-izquierda"><</button>
+
+                <div class="contenedor-carrousel">
+                    <div class="carrousel">'
+            ;
+            
+                            $resultado2 = $mysqli->QUERY("SELECT idecon04, nomcon04, clacon04, tipcon04, durcon04, procon04, vistas04,
+                            aprcon04, descon04, arccon04, precon04, covcon04, sincon04 FROM maecon04 WHERE catcon04='".$fila['nomcat07']."' ORDER BY idecon04 ASC");
+                            $resultado2->data_seek(0);
+                            $guia2 = "";
+                        while ($fila2 = $resultado2->fetch_assoc()) {
+                            $contenidovid = $fila2['arccon04'];
+                            $contenidoimg = $fila2['nomcon04'];
+                           $contenidolg = $fila2['nomcon04'];
+                            $productor = $fila2['procon04'];
+                            $contenidopri = $fila2['precon04'];
+                            $contenidosin = $fila2['sincon04'];
+                            $guia2 = $guia2+1;
+                            $val = $guia2;
+                        echo '
+                            <div onclick="si('.$val.')" class="pelicula" id="aa">
+                                                            
+                            <video  width="100%" height="100%"  id="videoPrin2" poster="assets/imagen/'.$contenidopri.'.jpg" controls onloadstart="this.volume=1"  controlsList="nodownload">
+                    <source id="trailer" src="assets/video/'.$contenidovid.'.mp4" type="video/mp4">
+                </video>
+                            </div>
+                   ';
+                }
+        echo '
+                    </div>
+                </div>
+
+                <button role="button" id="flecha-derecha" class="flecha-derecha" >></button>
+            </div>
+</div>
+            ';
+}
+}

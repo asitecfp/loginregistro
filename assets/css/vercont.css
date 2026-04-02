@@ -1,0 +1,38 @@
+body {
+    background-color: black;
+}
+
+video #repcont{
+background-color: black;
+background: black;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background-size: cover;
+}
+
+/*button /*my-button*/
+    .botsig {
+        background: rgba(61, 61, 61, 0.5);
+        border: none;
+        border-radius: 0.31em;
+        padding: 0.93em 1.87em;
+        color: #fff;
+        margin-right: 1.25em;
+        cursor: pointer;
+        transition: .3s ease all;
+        font-size: 1.12em;
+        
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+    .botsig:hover {
+        background: #fff;
+        color: #000000;
+    }

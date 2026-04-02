@@ -1,0 +1,146 @@
+
+// bienvenido -
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bienvenido a su Streaming-Pro</title>
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/estilos2.css">
+    </head>
+
+    <body class="hidden">
+        
+        <div class="preload" id="onload">
+            <h2 class="prelogo">STREAMING-PRO</h2>      
+        </div>     
+	
+        <header>
+    
+            <div class="contenedor">
+                <h2 class="logotipo2">STREAMING-PRO</h2>       
+            
+            </div>
+        </header>
+<!---->
+<!-------------------------------------------Cargar contenido Principal------------------------------------->
+        <main>  
+            // seleccion - cargaprincipal()
+            <div class="pelicula-principal" >
+                <!--<video width="100%" height="100%"class="videoPrin" id="videoPrin" poster="/prin/'.$contenidoid.'.webp" src="'.$tradirsd.''.$contenidoid.'.mp4" preload onloadstart="this.volume=1"  controlsList="nodownload"></video>
+                    <video class="videoPrin" id="videoPrin" poster="assets/imagen/pngv.png" autoplay controls preload onloadstart="this.volume=1"  controlsList="nodownload nopictureinpicture" disablePictureInPicture>
+                    <source src="assets/video/Spider Man Un Nuevo Universo (2018) Tráiler.mp4#t=,00:01:13" type="video/mp4">
+                </video>--->
+                <div class="contenedor2">
+
+                    <img id="logo" src="/logos/'.$contenidoid.'.png" alt="">
+                    <img id="prod" src="/logos/'.$productor.'.png" alt="">
+                    <h3 id="titulo" class="titulo" ></h3>
+                    <!--<h3 class="titulo" ></h3>--->
+                    <p class="descripcion" id="sinopsis" >'.$contenidosin.'</p>
+                    <a id="con" href="vercontenido.php?cont='.$contdirsd.''.$contenidoid.'"><button onclick="ver()" role="button" value="" class="boton">Ver ahora!</button></a></>
+                    <button id="fullscreen" action="pelicula.php" method="POST" role="button" class="boton">Pantalla Completa </button>
+                    <button id="trailer" action="pelicula.php" method="POST" role="button" class="boton">Ver Tráiler / Pausar ||</button>
+                
+                </div>
+                <!--<div class="contenedor3 stye="background-image: url(/prin/'.$contenidoid.'.webp)"">--->
+                <div class="contenedor3">   
+                    
+                    <video width="100%" height="100%"class="videoPrin" id="videoPrin" poster="/prin/'.$contenidoid.'.webp" src="'.$tradirsd.''.$contenidoid.'.mp4" controlsList="nodownload"></video>
+                    <div class="espaciador2"></div>
+                </div>
+                <nav>
+                    <a href="#page-1">1</a>
+                    <a href="#page-2">2</a>
+                    <a href="#page-3">3</a>
+                </nav>
+            </div>
+            
+            <div class="espaciador"></div>
+            
+            <scroll-container>
+                // seleccion - cargarcont
+                <scroll-page id="page-'.$bot.'">
+                <div id="desaparecer'.$bot.'" class="peliculas-populares">    
+                    <div class="contenedor-titulos-controles">
+                        <h3><a href="categoria.php?cont='.$fila['nomcat07'].'" id="categ">'.$fila['nomcat07'].'</a></h3>
+                        <div class="indicadores">
+                        </div>
+                    </div>
+                    
+                    <div class="contenedor-principal">
+                        <button onclick="bt('.$bot.')" role="button" id="'.$bot.'flecha-izquierda" class="flecha-izquierda"><</button>
+                            <div class="contenedor-carrousel'.$bot.'">
+                                <div class="carrousel">';
+                                    <div onclick="si('.$val.','.$cat.')" class="pelicula" id="nueva">
+                                        <a href="#" id="cover"><img src="/cover/'.$contenidoid.'.webp" alt="" ></a>
+                                        <p hidden id="'.$cat.'id'.$val.'" value="'.$contenidoid.'">'.$contenidoid.'</p> 
+                                        <p hidden id="'.$cat.'video'.$val.'" value="'.$contenidovid.'">'.$contenidovid.'</p>
+                                        <p hidden id="'.$cat.'cover'.$val.'" value="'.$contenidoimg.'">'.$contenidoimg.'</p>
+                                        <!--<p id="'.$cat.'logo'.$val.'" value="'.$contenidolg.'">'.$contenidolg.'</p>-->
+                                        <p hidden id="'.$cat.'prod'.$val.'" value="'.$productor.'">'.$productor.'</p>
+                                        <p hidden id="'.$cat.'imgprin'.$val.'" value="'.$contenidopri.'">'.$contenidopri.'</p>
+                                        <p hidden id="'.$cat.'sinop'.$val.'" value="'.$contenidosin.'">'.$contenidosin.'</p>
+                                        <!--<p id="'.$cat.'cont'.$val.'" value="'.$contenido.'">'.$contenido.'</p>-->
+                                        <p hidden id="'.$cat.'ser'.$val.'" value="'.$ser.'">'.$ser.'</p>
+                                                
+                                        <p hidden id="'.$cat.'trasd'.$val.'" value="'.$tradirsd.'">'.$tradirsd.'</p>
+                                        <p hidden id="'.$cat.'trahd'.$val.'" value="'.$tradirhd.'">'.$tradirhd.'</p>
+                                        <p hidden id="'.$cat.'trafhd'.$val.'" value="'.$tradirfhd.'">'.$tradirfhd.'</p>
+                                                
+                                        <p hidden id="'.$cat.'dirsd'.$val.'" value="'.$contdirsd.'">'.$contdirsd.'</p>
+                                        <p hidden id="'.$cat.'dirhd'.$val.'" value="'.$contdirhd.'">'.$contdirhd.'</p>
+                                        <p hidden id="'.$cat.'dirfhd'.$val.'" value="'.$contdirfhd.'">'.$contdirfhd.'</p>
+                                        <p hidden id="'.$cat.'dir4k'.$val.'" value="'.$contdirfhd.'">'.$contdirfhd.'</p>
+                                        <p hidden id="'.$cat.'dir8k'.$val.'" value="'.$contdirfhd.'">'.$contdirfhd.'</p>
+                                    </div>
+                                </div>
+                            </div>
+                        <button onclick="bt('.$bot.')" role="button" id="'.$bot.'flecha-derecha" class="flecha-derecha" >></button>
+                    </div>
+                </div>
+                </scroll-page>
+            </scroll-container>    
+               <!--</div>--> 
+
+            <div style="Background:black; display:flex; align-items:center; padding-left:0px;" class="piso" aling="center" style>
+                <table style="aling:center; color:white; margin-left:auto; margin-right:auto;" id="tablapiso" width="150" border="0" cellspacing="50" cellpadding="50">
+                        <!--  <tr>
+                                <td>Línea1</td>
+                                <br>
+                                <td>Línea2</td>
+                                <br><br>
+                                <td>Línea3</td>
+                                <br><br><br>
+                                <td>Línea4</td>
+                                <td>Línea5</td>
+                            </tr>
+                                <tr>
+                                    <td>Línea1</td>
+                                    <br>
+                                    <td>Línea1</td>
+                                        <br><br>
+                                            <td>Línea1</td>
+                                        <br><br><br>
+                                    <td>Línea1</td>
+                                    <td>Línea1</td>
+                                </tr>
+                            <tr>
+                                <td>Línea1</td>
+                                    <br>
+                                <td>Línea1</td>
+                                    <br><br>
+                                <td>Línea1</td>
+                                <br><br><br>
+                                <td>Línea1</td>
+                                <td>Línea1</td>
+                            </tr>-->
+                </table>
+            </div>
+        </main>
+                <script src="assets/js/testspeed.js"></script>
+                <script src="assets/js/main.js"></script>           
+    </body>
+</html>

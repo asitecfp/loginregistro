@@ -1,0 +1,13 @@
+Bienvendido
+Llamada a funcion cargacont($perfil)
+Valor variable "Full Perfil" a "Full+"
+
+Index
+Valores con "Full Perfil" a "Full"
+
+Seleccion
+funcion cargacont($perfil)
+MOdificacion de consulta de categorias filtrado por los perfiles
+
+Tabla categoria de contenido
+agregue campo que hacer referencia al perfil

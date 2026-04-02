@@ -1,0 +1,7 @@
+cargarcontenido($contenidolg, $productor)
+
+<script>alert('');</script>
+
+'.$fila2['idecon04'].'
+
+<a href="#" id="cover"><img src="assets/imagen/'.$fila2['covcon04'].'.jpg" alt="" ></a>

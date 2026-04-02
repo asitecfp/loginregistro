@@ -1,0 +1,267 @@
+
+* {
+padding:0px;
+margin:0px;
+color:#ff6c00;
+position: sticky;
+font-family: Helvetica;
+}
+
+#header{
+	margin: auto;
+	width: auto;
+	font-family: Helvetica;
+	font-size: 16px;
+}
+
+ul, ol {
+	display: flex;
+	list-style: none;
+	/*background-color: rgb(32, 29, 29);*/
+	/*color: rgb(0, 0, 0);*/
+	border-radius: 26px;
+	align-items: center;
+	height: auto;
+}
+.pc {
+	/*background-color: rgb(32, 29, 29);*/
+	height: 20px;
+	/*color: #fff;*/
+	/*text-decoration: none;*/
+	padding: 20px 20px;
+	display: flex;
+	z-index: 500000000;
+	border-radius: 26px;
+	align-items: center;
+}
+.tv {
+	display:none;
+}
+.nav li a:active {
+	color:#f85707;
+}
+.nav li a:visited {
+	/*color:#ff6c00;*/
+}
+#desplegable {
+	
+	background-color: rgb(32, 29, 29);
+	color: rgb(0, 0, 0);
+	
+	align-items: center;
+	height: 40px;
+}
+.nav li a:hover{
+	/*background-color: gray;*/
+	color: #ec5104;
+}
+
+.nav > li {
+	float: left;
+	overflow: visible;
+}
+
+.nav li ul {
+	display:none;
+	position: absolute;
+	min-width: 300px;
+	background: black;
+	border-radius: 6px;
+}
+
+.nav li:hover > ul{
+	display: block;
+}
+
+.nav li ul li {
+	position: relative;
+    text-align: left;
+    margin-left: 60px;
+    background: black;
+    color: gray;
+    font-size: small;
+  }
+.nav li ul li ul {
+	right: -140px;
+	top: 0px;
+}
+.nav li i {
+
+	height: 20px;
+	width: 20px;
+	display: none;
+}
+.icon {
+	display: none;
+	
+}
+#searchInput{
+  background: rgba(61, 61, 61, 0.5);
+  border: none;
+  border-radius: 0.31em;
+  padding: 0.93em 1.87em;
+  color: #fff;
+  margin-right: 1.25em;
+  cursor: pointer;
+  transition: .3s ease all;
+  font-size: 1.12em;
+  /*display: block;*/
+}
+#result{
+	cursor: pointer;
+  }
+.nav li ul img {
+	height: 15px;
+	margin-left: 5px;
+}
+.ocul {
+	display: none;
+} 
+@media screen and (max-width: 1100px) {
+	#header{
+		height: 100%;
+		font-family: Helvetica;
+		font-size: 16px;
+		width: 45px;
+	}
+	
+	header .contenedor h2 {
+		display: none;
+	}
+	ul, ol {
+		display: grid;
+		height: 100%;
+		background-color: none;
+		color:none ;
+	}
+	.pc {
+		display: none;
+	}
+	.tv {
+		display: contents;
+	}
+	.nav li i {
+		/*height: 25px;
+		width: 25px;*/
+		color: rgb(243, 77, 0);
+		display: block;
+	}
+	.nav li i:hover {
+		/*height: 25px;
+		width: 25px;*/
+		color: rgb(231, 224, 222);
+	
+	}
+	.sub-menu {
+		display: none;
+	}
+	.nav li:hover > ul{
+		display: none;
+	}
+	
+	.nav > li {
+		
+		display: block ruby;
+		font-size: x-large;
+		max-width: 45px;
+	}
+	.icon {
+		display:block;
+		height: 15px;
+		width: 15px;
+	}
+	#searchItem{
+		overflow: visible;
+	}
+	#searchInput{
+		background: rgba(61, 61, 61, 0.5);
+		border: none;
+		border-radius: 0.31em;
+		padding: 0.93em 1.87em;
+		color: #fff;
+		
+		cursor: pointer;
+		transition: .3s ease all;
+		display: none;
+	  }
+	  #result{
+		cursor: pointer;
+	  }
+	.nav li ul {
+		display:none;
+		position: absolute;
+		min-width: 300px;
+		background: black;
+		border-radius: 6px;
+		height: auto;
+	}
+	.nav li ul li {
+		position: relative;
+		text-align: left;
+		margin-left: 60px;
+		background: black;
+		color: gray;
+		font-size: small;
+	  }
+}
+@media (max-width: 660px){
+	
+	#header{
+		margin-top: 250px;
+		margin: auto;
+		max-width: 478;
+		/*width: auto;*/
+		font-family: Helvetica;
+		font-size: 9px;
+		/*margin-top: 25px;*/
+	}
+	#desplegable{
+			display: none;
+	}
+	#icono{
+		display: none;
+	}
+	.li {
+		overflow: visible;
+		max-width: 45px;
+
+	}
+	#searchItem{
+		overflow: visible;
+	}
+	#searchInput{
+		background: rgba(61, 61, 61, 0.5);
+		border: none;
+		border-radius: 0.31em;
+		color: #fff;
+		margin-right: 1.25em;
+		cursor: pointer;
+		transition: .3s ease all;
+		display: none;
+	  }
+	  #result{
+		cursor: pointer;
+	  }
+	.nav li ul {
+		display:none;
+		position: absolute;
+		min-width: 300px;
+		background: black;
+		border-radius: 6px;
+		height: auto;
+	}
+	.nav li ul li {
+		position: relative;
+		text-align: left;
+		margin-left: 60px;
+		background: black;
+		color: gray;
+		font-size: small;
+	  }
+	  .pc {
+		display: none;
+	}
+	.tv {
+		display: contents;
+	}
+}

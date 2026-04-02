@@ -1,0 +1,40 @@
+<?php
+$mysqli = new mysqli("localhost", "root", "", "bnucled");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
+    $resultado0 = $mysqli->query("SELECT idecon04, nomcon04, clacon04, tipcon04, durcon04, procon04, vistas04,
+                                        aprcon04, descon04, arccon04, covcon04, sincon04 FROM maecon04 WHERE conpri04='1'");
+    $resultado0->data_seek(0);
+
+while ($fila0 = $resultado0->fetch_assoc()) {
+    $dir=$fila0['arccon04']
+    echo '
+        <video width="100%" height="100%"class="videoPrin" id="videoPrin" poster="assets/imagen/pngv.png" controls preload onloadstart="this.volume=1"  controlsList="nodownload">
+            <source src="assets/video/'.$fila0['arccon04'].'.mp4" type="video/mp4">
+        </video>
+        <!--   <video width="100%" height="100%"class="videoPrin" id="videoPrin" poster="assets/imagen/pngv.png" controls preload onloadstart="this.volume=1"  controlsList="nodownload nopictureinpicture" disablePictureInPicture>
+              <source src="assets/video/Spider Man Un Nuevo Universo (2018) Tráiler.mp4#t=,00:01:13" type="video/mp4">
+            </video>--->
+        <div class="contenedor2">
+
+            <img src="assets/imagen/logos/netflixlg.png" alt="">
+            <h3 class="titulo" >Spiderman</h3>
+            <p class="descripcion" >
+            En un universo paralelo donde Peter Parker ha muerto, un joven de secundaria
+            llamado Miles Morales es el nuevo Spider-Man. Sin embargo, cuando el líder mafioso
+            Wilson Fisk (a.k.a Kingpin) construye el "Super Colisionador" trae a una versión
+            alternativa de Peter Parker que tratará de enseñarle a Miles como ser un mejor Spider-Man.
+            Pero no será el único Spider Man en entrar a este universo: 4 versiones alternas de
+            Spider-Man aparecerán y buscarán regresar a su universo antes de que toda la realidad se colapse.
+            </p>
+            <a href="prueba.php"><button role="button" class="boton">Reproducir</button></>
+            <button  action="pelicula.php" method="POST" role="button" class="boton">Mas información</button>
+
+        </div>      
+            
+    </div>
+    ';
+}
+?>

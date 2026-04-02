@@ -1,0 +1,76 @@
+<!---------------- Consultando Categorias "catcon07" / "idecat07" "nomcat07" ------------------>
+<?php
+$mysqli = new mysqli("localhost", "root", "", "bnucled");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
+$resultado = $mysqli->query("SELECT idecat07, nomcat07 FROM catcon07 ORDER BY idecat07 ASC");
+
+
+$resultado->data_seek(0);
+while ($fila = $resultado->fetch_assoc()) {
+    echo '
+<div class="peliculas-populares">
+            
+    <div class="contenedor-titulos-controles">
+        <h3>'.$fila['nomcat07'].'</h3>
+        <div class="indicadores">
+            <button></button>
+            <button></button>
+        </div>
+    </div>
+
+    <div class="contenedor-principal">
+        <button role="button" id="flecha-izquierda" class="flecha-izquierda"><</button>
+
+        <div class="contenedor-carrousel">
+            <div class="carrousel">
+                <div class="pelicula">  
+                    <a href="#"><img src="assets/imagen/01.jpg" alt=""></a>
+                </div>
+                
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/02.jpg" alt=""></a>
+                </div>
+                
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/03.jpg" alt=""></a>
+                </div>
+                
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/04.jpg" alt=""></a>
+                </div>
+                
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/05.jpg" alt=""></a>
+                </div>
+                
+                <div class="pelicula">  
+                <a href="#"><img src="assets/imagen/01.jpg" alt=""></a>
+                </div>
+            
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/02.jpg" alt=""></a>
+                </div>
+            
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/03.jpg" alt=""></a>
+                </div>
+                
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/04.jpg" alt=""></a>
+                </div>
+                
+                <div class="pelicula">
+                    <a href="#"><img src="assets/imagen/05.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+
+            <button role="button" id="flecha-derecha" class="flecha-derecha">></button>
+    </div>
+</div>
+        ';
+}
+?>

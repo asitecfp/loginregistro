@@ -1,0 +1,65 @@
+<?php
+$mysqli = new mysqli("localhost", "root", "", "bnucled");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
+    $resultado0 = $mysqli->query("SELECT idecon04, nomcon04, clacon04, tipcon04, durcon04, procon04, vistas04,
+                                        aprcon04, descon04, arccon04, covcon04, sincon04 FROM maecon04 WHERE conpri04='1'");
+    $resultado0->data_seek(0);
+
+while ($fila0 = $resultado0->fetch_assoc()) {
+    echo '
+    <div class="pelicula-principal" stye="background-image: url(assets/imagen/spidermanNU/spidermanH2.jpg)">
+        <video width="100%" height="100%"class="videoPrin" id="videoPrin" poster="assets/imagen/pngv.png" controls preload onloadstart="this.volume=1"  controlsList="nodownload">
+            <source src="assets/video/'.$fila0['arccon04'].'.mp4" type="video/mp4">
+        </video>
+        <!--   <video width="100%" height="100%"class="videoPrin" id="videoPrin" poster="assets/imagen/pngv.png" controls preload onloadstart="this.volume=1"  controlsList="nodownload nopictureinpicture" disablePictureInPicture>
+              <source src="assets/video/Spider Man Un Nuevo Universo (2018) Tráiler.mp4#t=,00:01:13" type="video/mp4">
+            </video>--->
+        <div class="contenedor2">
+
+            <img src="assets/imagen/logos/'.$fila0['nomcon04'].'.png" alt="">
+            <img src="assets/imagen/logos/'.$fila0['procon04'].'.png" alt="">
+            <!--<h3 class="titulo" >Spiderman</h3>--->
+            <p class="descripcion" >
+           '.$fila0['sincon04'].'
+            </p>
+            <a href="prueba.php"><button role="button" class="boton">Ver ahora!</button></>
+            <button  action="pelicula.php" method="POST" role="button" class="boton">Mas información</button>
+            <button  action="pelicula.php" method="POST" role="button" class="boton">Ver Tráiler</button>
+
+        </div>      
+            
+    </div>
+    ';
+}
+?>
+
+
+
+
+
+
+<?php
+$mysqli = new mysqli("localhost", "root", "", "bnucled");
+if ($mysqli->connect_errno) {
+    echo "Falló la conexión a MySQL: (" . $mysqli->connect_errno . ") " . $mysqli->connect_error;
+}
+
+    $resultado0 = $mysqli->query("SELECT idecon04, nomcon04, clacon04, tipcon04, durcon04, procon04, vistas04,
+                                        aprcon04, descon04, arccon04, covcon04, sincon04 FROM maecon04 WHERE conpri04='1'");
+    $resultado0->data_seek(0);
+
+if ($fila0 = $resultado0->fetch_assoc()) {
+    $contenidovid = $fila0['arccon04'];
+    $contenidoimg = $fila0['nomcon04'];
+   $contenidolg = $fila0['nomcon04'];
+    $productor = $fila0['procon04'];
+    $contenidosin = $fila0['sincon04'];
+    echo '
+ 
+ <p class="descripcion">'.$contenidovid.'</p>
+ ';
+    }
+    ?>

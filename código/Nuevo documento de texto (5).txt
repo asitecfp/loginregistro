@@ -1,0 +1,41 @@
+function setSrc(id, src)         {             var element = document.getElementById(id);             element.src = src;         }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    
+    <style>
+        .contenedor-img {
+            border: 1px solid grey;
+        }
+        .contenedor-img img {
+           max-height: 150px;
+           max-width : 150px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        function $(element_id)
+        {
+            return document.getElementById(element_id);
+        }
+        function setSrc(element_id, src)
+        {
+            var element = $(element_id);
+            element.src = src;
+        }
+    </script>
+</head>
+<body style="padding: 5%">
+    <div class="img">
+        <img src="https://placekitten.com/200/287" alt="" id="main-image">
+    </div>
+
+    <div class="container-text">
+        <div class="contenedor-img"><br>
+            <img src="https://placekitten.com/200/140" onclick="setSrc('main-image', this.src)">
+            <img src="https://placekitten.com/408/287" onclick="setSrc('main-image', this.src)">
+        </div>
+    </div>
