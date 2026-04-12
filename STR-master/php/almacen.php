@@ -243,9 +243,9 @@
 															
 																$resultado = $mysqli->query("SELECT idalma15, idservi15, letalm15, diralm15, alialm15, frealm15, totalm15, prealm15 FROM almser15 WHERE guialm15='$guiaarray[$i]'");
 																$resultado->data_seek(0);
-																$bot = "";
+																$bot = 0;
 																while ($fila = $resultado->fetch_assoc()) {
-																	$bot = $bot + 1;
+																	$bot++;
 																	$uni = $fila['letalm15'];
 																	obt_free_space_disk($uni);
 																	obt_total_space_disk($uni);
