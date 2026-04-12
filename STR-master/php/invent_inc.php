@@ -210,9 +210,9 @@
                                                                 sincon04, tipcon04, status04, usuari04 FROM maecon04 WHERE status04='DEV' and nivest04<>'1' and usuari04='$usuario' OR status04='INC' and usuari04='$usuario'");
 							}
                             $resultado->data_seek(0);
-                            $bot = "";
+                            $bot = 0;
                             while ($fila = $resultado->fetch_assoc()) {
-                                $bot = $bot + 1;
+                                $bot++;
 								$id = $fila['idecon04'];
 								$tipcon = $fila['tipcon04'];
 								$estatus = $fila['status04'];

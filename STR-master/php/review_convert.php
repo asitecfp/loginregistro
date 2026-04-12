@@ -209,13 +209,13 @@
 																//status04='REV'378
 							
                             $resultado->data_seek(0);
-                            $bot = "";
+                            $bot = 0;
 							$count = 0;
-							$count_sd = "";
-							$count_hd = "";
-							$count_fhd = "";
+							$count_sd = 0;
+							$count_hd = 0;
+							$count_fhd = 0;
                             while ($fila = $resultado->fetch_assoc()) {
-                                $bot = $bot + 1;
+                                $bot++;
 								$id = $fila['idecon04'];
 
 								$resultado3 = $mysqli->QUERY("SELECT sdruta19, hdruta19, fhdrut19, 4kruta19 FROM maerut19 WHERE idcont19=$id");
@@ -315,7 +315,7 @@
 										
 										
 												<label style="background:red;cursor:pointer" class="quality-labels-sd" id="'.$bot.'quality-labels-sd" for="hd">SD</label>';
-													$count_sd = $count_sd + 1;
+													$count_sd++;
 										}else{
 												
 												echo '
@@ -329,7 +329,7 @@
 										if ($result["estado"] != "Existe") {
 												echo '
 													<label style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>';
-													$count_hd = $count_hd + 1;
+													$count_hd++;
 										}else{
 												echo '
 													<label style="background:green" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>';
@@ -343,7 +343,7 @@
 										if ($result["estado"] != "Existe") {
 												echo '
 													<label style="background:red;cursor:pointer" class="quality-labels-fhd" id="'.$bot.'quality-labels-fhd" for="fhd">FHD</label>';
-													$count_fhd = $count_fhd + 1;
+													$count_fhd++;
 										}else{
 															
 												echo '
@@ -552,7 +552,7 @@
 															echo '
 																<!--<label title='.$ruta_real_sd.' style="background:red;cursor:pointer" class="quality-labels-sd" id="'.$bot.'quality-labels-sd" for="hd">SD</label>-->
 																<label title='.$ruta_real_sd.' style="cursor:pointer" class="quality-labels-sd" id="'.$bot.'quality-labels-sd" for="hd">SD</label>';
-																$count_sd = $count_sd + 1;
+																$count_sd++;
 													}else{
 															
 															echo '
@@ -567,7 +567,7 @@
 															echo '
 																<!--<label title='.$ruta_real_hd.' style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>-->
 																<label title='.$ruta_real_hd.' style="cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>';
-																$count_hd = $count_hd + 1;
+																$count_hd++;
 													}else{
 															echo '
 																<label title='.$ruta_real_hd.' style="background:green" value="'.$idcap.'" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>';
@@ -582,7 +582,7 @@
 															echo '
 																<!--<label title='.$ruta_real_fhd.' style="background:red;cursor:pointer" class="quality-labels-fhd" id="'.$bot.'quality-labels-fhd" for="fhd">FHD</label>-->
 																<label title='.$ruta_real_fhd.' style="cursor:pointer" class="quality-labels-fhd" id="'.$bot.'quality-labels-fhd" for="fhd">FHD</label>';
-																$count_fhd = $count_fhd + 1;
+																$count_fhd++;
 													}else{
 																		
 															echo '
@@ -754,7 +754,7 @@
 										if ($result["estado"] != "Existe") {
 										echo '
 												<label style="background:red;cursor:pointer" class="quality-labels-sd" id="'.$bot.'quality-labels-sd" for="hd">SD</label>';
-												$count_sd = $count_sd + 1;
+												$count_sd++;
 										}else{
 											
 											echo '
@@ -769,7 +769,7 @@
 										if ($result["estado"] != "Existe") {
 											echo '
 												<label style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>';
-												$count_hd = $count_hd + 1;
+												$count_hd++;
 										}else{
 													
 											echo '
@@ -784,7 +784,7 @@
 										if ($result["estado"] != "Existe") {
 											echo '
 												<label style="background:red;cursor:pointer" class="quality-labels-fhd" id="'.$bot.'quality-labels-fhd" for="fhd">FHD</label>';
-												$count_fhd = $count_fhd + 1;
+												$count_fhd++;
 										}else{
 											echo '
 												<label style="background:green" class="quality-labels-fhd" id="'.$bot.'quality-labels-fhd" for="fhd">FHD</label>';
@@ -833,7 +833,7 @@
 										if ($result["estado"] != "Existe") {
 											echo '
 												<label style="background:red;cursor:pointer" class="quality-labels-sd" id="'.$bot.'quality-labels-sd" for="hd">SD</label>';
-											$count_sd = $count_sd + 1;
+											$count_sd++;
 										}else{
 												
 											echo '
@@ -847,7 +847,7 @@
 										if ($result["estado"] != "Existe") {
 											echo '
 												<label style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>';
-												$count_hd = $count_hd + 1;
+												$count_hd++;
 										}else{
 												echo '
 													<label style="background:green" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">HD</label>';
@@ -861,7 +861,7 @@
 										if ($result["estado"] != "Existe") {
 												echo '
 													<label style="background:red;cursor:pointer" class="quality-labels-fhd" id="'.$bot.'quality-labels-fhd" for="fhd">FHD</label>';
-													$count_fhd = $count_fhd + 1;
+													$count_fhd++;
 										}else{
 															
 												echo '

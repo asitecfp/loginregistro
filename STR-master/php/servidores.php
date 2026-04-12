@@ -277,9 +277,9 @@
 															
 																$resultado = $mysqli->query("SELECT idserv13, namser13, ip4ser13, conser13, ususer13, preser13 FROM server13 WHERE 1");
 																$resultado->data_seek(0);
-																$bot = "";
+																$bot = 0;
 																while ($fila = $resultado->fetch_assoc()) {
-																	$bot = $bot + 1;
+																	$bot++;
 																	echo ' 
 																		<tr>
 																			<td class="mdl-data-table__cell--non-numeric">'.$fila['idserv13'].'</td>

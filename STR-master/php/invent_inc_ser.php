@@ -206,9 +206,9 @@
 							}
 							
                             $resultado->data_seek(0);
-                            $bot = "";
+                            $bot = 0;
                             while ($fila = $resultado->fetch_assoc()) {
-                                $bot = $bot + 1;
+                                $bot++;
 								$id = $fila['idcapi18'];
 								if ($bot <= 1) {
                                 echo ' 

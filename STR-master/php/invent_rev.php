@@ -204,9 +204,9 @@
                             $resultado = $mysqli->query("SELECT idecon04, nomcon04, catcon04, durcon04, fecpro04, feclan04, procon04, calcon04, forcon04, tipcon04,
                                                                 sincon04, status04, usuari04 FROM maecon04 WHERE status04='REV'");
                             $resultado->data_seek(0);
-                            $bot = "";
+                            $bot = 0;
                             while ($fila = $resultado->fetch_assoc()) {
-								$bot = $bot + 1;
+								$bot++;
 								if ($bot <= 1) {
                                 echo '
 								

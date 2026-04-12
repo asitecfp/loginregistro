@@ -244,9 +244,9 @@
 															
 																$resultado = $mysqli->query("SELECT idecon12, nomtip12, usutip12, fectip12 FROM procon12 WHERE 1");
 																$resultado->data_seek(0);
-																$bot = "";
+																$bot = 0;
 																while ($fila = $resultado->fetch_assoc()) {
-																	$bot = $bot + 1;
+																	$bot++;
 																	echo ' 
 																		<tr>
 																			<td class="mdl-data-table__cell--non-numeric">'.$fila['idecon12'].'</td>

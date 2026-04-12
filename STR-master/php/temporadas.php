@@ -200,9 +200,9 @@
 
 													$resultado = $mysqli->query("SELECT idecon04, nomcon04, catcon04, tipcon04  FROM maecon04 WHERE tipcon04<>'pelicula' ORDER BY idecon04 DESC ");
 													$resultado->data_seek(0);
-													$bot = "";
+													$bot = 0;
 													while ($fila = $resultado->fetch_assoc()) {
-														$bot = $bot + 1;
+														$bot++;
 														$id= $fila['idecon04'];
 														//Consulta cantidad de temporadas del contenido seleccionado
 														$result1 = $mysqli->query("SELECT COUNT(*) numtem17 FROM maetem17 WHERE idmaec17 = $id");

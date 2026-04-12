@@ -288,7 +288,7 @@
 									$resultado = $mysqli->query("SELECT corusu01, nomusu01, apeusu01, stausu01, ingusu01 FROM usuario WHERE stausu01='activo' AND tipsus01='ZNET' AND tipcue01='visor'");
 									$resultado->data_seek(0);
 
-									$bot = "";
+									$bot = 0;
 									$count = 0;							
 									$correo = "";
 									$nombre = "";
@@ -297,7 +297,7 @@
 									$fecha = "";
 									
 									while ($fila = $resultado->fetch_assoc()) {
-										$bot = $bot + 1;
+										$bot++;
 										
 										$correo = $fila['corusu01'];
 										$nombre = $fila['nomusu01'];
