@@ -297,7 +297,7 @@
 												<label style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 											}
 										if (($result["estado"] == "Existe") && ($estatus == "REV")) {
-												$count_rev = $count_rev + 1;
+												$count_rev++;
 												echo '
 													<label style="background:green" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 										}
@@ -358,7 +358,7 @@
 										if ($result["estado"] != "Existe") {
 												echo '
 													<label style="background:red;cursor:pointer" class="quality-labels-qhd" id="'.$bot.'quality-labels-qhd" for="qhd">QHD</label>';
-													$count_qhd = $count_qhd + 1;
+													$count_qhd++;
 										}else{
 															
 												echo '
@@ -535,7 +535,7 @@
 															<label title='.$ruta_real.' style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 														}
 													if (($result["estado"] == "Existe") && ($estatus == "REV")) {
-															$count_rev = $count_rev + 1;
+															$count_rev++;
 															echo '
 																<label title='.$ruta_real.' style="background:green" value="'.$idcap.'" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 													}
@@ -598,7 +598,7 @@
 															echo '
 																<!--<label title='.$ruta_real_qhd.' style="background:red;cursor:pointer" class="quality-labels-qhd" id="'.$bot.'quality-labels-qhd" for="qhd">QHD</label>-->
 																<label title='.$ruta_real_qhd.' style="cursor:pointer" class="quality-labels-qhd" id="'.$bot.'quality-labels-qhd" for="qhd">QHD</label>';
-																$count_qhd = $count_qhd + 1;
+																$count_qhd++;
 													}else{
 																		
 															echo '
@@ -739,7 +739,7 @@
 												<label style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 										}
 										if (($result["estado"] == "Existe") && ($estatus == "REV")) {
-											$count_rev = $count_rev + 1;
+											$count_rev++;
 											echo '
 												<label style="background:green" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 										}
@@ -797,7 +797,7 @@
 										if ($result["estado"] != "Existe") {
 											echo '
 												<label style="background:red;cursor:pointer" class="quality-labels-qhd" id="'.$bot.'quality-labels-qhd" for="qhd">QHD</label>';
-												$count_qhd = $count_qhd + 1;
+												$count_qhd++;
 										}else{
 													
 											echo '
@@ -820,7 +820,7 @@
 												<label style="background:red;cursor:pointer" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 											}
 										if (($result["estado"] == "Existe") && ($estatus == "REV")) {
-												$count_rev = $count_rev + 1;
+												$count_rev++;
 												echo '
 													<label style="background:green" class="quality-labels-hd" id="'.$bot.'quality-labels-hd" for="hd">REV</label>';
 										}
@@ -876,7 +876,7 @@
 										if ($result["estado"] != "Existe") {
 												echo '
 													<label style="background:red;cursor:pointer" class="quality-labels-qhd" id="'.$bot.'quality-labels-qhd" for="qhd">QHD</label>';
-													$count_qhd = $count_qhd + 1;
+													$count_qhd++;
 										}else{
 															
 												echo '

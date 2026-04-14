@@ -217,9 +217,9 @@
                                                         fecpro04, feclan04, procon04, calcon04, forcon04, sincon04, status04  FROM maecon04 WHERE status04='REV'");
 
 													$resultado->data_seek(0);
-													$bot = "";
+													$bot = 0;
 													while ($fila = $resultado->fetch_assoc()) {
-														$bot = $bot + 1;
+														$bot++;
 														$id= $fila['idecon04'];
 														$calidad_sd = "";
 														$calidad_hd = "";
