@@ -1,0 +1,69 @@
+# ══════════════════════════════════════════════════════════════
+# FASE 1 — Headers de seguridad HTTP y reglas de acceso
+# WAMP / Apache 2.4 compatible
+# ══════════════════════════════════════════════════════════════
+
+# ── Headers de seguridad (requiere mod_headers habilitado) ────
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always unset X-Powered-By
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ── Deshabilitar listado de directorios ───────────────────────
+Options -Indexes
+
+# ── Bloquear acceso a archivos sensibles por extensión ────────
+<FilesMatch "\.(sql|log|env|bak)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── Bloquear acceso a archivos .txt (excepto robots.txt) ─────
+<FilesMatch "^(?!robots).*\.txt$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# ── manifest.json debe ser accesible ─────────────────────────
+<Files "manifest.json">
+    <IfModule mod_authz_core.c>
+        Require all granted
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+</Files>
+
+# ── Bloquear acceso directo a carpetas críticas ───────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^config/  - [F,L]
+    RewriteRule ^logs/    - [F,L]
+    RewriteRule ^vendor/  - [F,L]
+</IfModule>
+
+# ── Bloquear acceso directo al archivo de conexión ───────────
+<Files "conexion_bd.php">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</Files>
