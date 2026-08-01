@@ -1,0 +1,3 @@
+# Bloquear acceso directo a la carpeta config desde el navegador
+Order deny,allow
+Deny from all
