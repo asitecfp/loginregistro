@@ -1,7 +1,7 @@
 <?php
-//error_reporting(0);
+// FASE 1 — Cargar configuración central (error reporting, sesión segura)
+require_once __DIR__ . '/config/config.php';
 require __DIR__ . '/vendor/autoload.php';
-error_reporting(E_ALL);
 //session_start();
 // use Sinergi\BrowserDetector\Browser;
 // use Sinergi\BrowserDetector\Device;
@@ -227,7 +227,7 @@ if(($UsuarioSES!="")||($UsuPerfil!=""))
 				?>
 					<form action="php/login_usuario.php" method="POST" class="formulario__login">
 						<h2>Iniciar Sesión</h2>
-						<input type="text" placeholder="Usuario. Ej.: 14601999" name="correo_usuario01" value="<?php echo $corusu0; ?>" onKeyPress="return email(event)" onpaste="return true" required="required" />
+						<input type="text" placeholder="Usuario. Ej.: 14601999" name="correo_usuario01" value="<?php echo htmlspecialchars($corusu0, ENT_QUOTES, 'UTF-8'); ?>" onKeyPress="return email(event)" onpaste="return true" required="required" />
 						<input type="password" placeholder="Contraseña" name="contrasena_usuario01" required="required">
 						<input name="pinusu" type="hidden" value="">
 						<input name="check1" type="hidden" value="act">
@@ -244,13 +244,13 @@ if(($UsuarioSES!="")||($UsuPerfil!=""))
 				
 				<h2>Registro</h2>
             	Datos Generales
-				<input name="nomusu" id="nomusu" value="<?php echo $nomusu0; ?>" type="text" maxlength="50" placeholder="Nombres" required="required" />
+				<input name="nomusu" id="nomusu" value="<?php echo htmlspecialchars($nomusu0, ENT_QUOTES, 'UTF-8'); ?>" type="text" maxlength="50" placeholder="Nombres" required="required" />
             		<br>
-            	<input name="apeusu" id="apeusu" value="<?php echo $apeusu0; ?>" type="text" maxlength="40" placeholder="Apellidos" required="required" />
+            	<input name="apeusu" id="apeusu" value="<?php echo htmlspecialchars($apeusu0, ENT_QUOTES, 'UTF-8'); ?>" type="text" maxlength="40" placeholder="Apellidos" required="required" />
             		<br>
             	<input type="hidden" name="aliusu" id="aliusu" value="<?php echo $aliusu0; ?>" type="text" maxlength="50" placeholder="Usuario (Opcional)" onKeyPress="return sololetras(event)" onpaste="return false"/>
             		<br>
-            	<input name="corusu" id="corusu" value="<?php echo $corusu0; ?>" type="text" maxlength="50" placeholder="Correo Electrónico. Ej.: ejemplo@ejemplo.com"  onKeyPress="return email(event)" onpaste="return false"  required="required" onKeyUp="validarcorreo()"/>
+            	<input name="corusu" id="corusu" value="<?php echo htmlspecialchars($corusu0, ENT_QUOTES, 'UTF-8'); ?>" type="text" maxlength="50" placeholder="Correo Electrónico. Ej.: ejemplo@ejemplo.com"  onKeyPress="return email(event)" onpaste="return false"  required="required" onKeyUp="validarcorreo()"/>
             	<input name="corusu2" id="corusu2" type="text" maxlength="50" placeholder="Confirmar Correo Electrónico" 
            			onKeyPress="return email(event)" onpaste="return false"  required="required" 
             			onChange="validarcorreo2()" />

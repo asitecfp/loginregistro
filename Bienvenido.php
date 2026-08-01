@@ -1,29 +1,35 @@
-<!-------------------------------------------Valida sesion usuario ------------------------------------------->
 <?php
-
-    $perfupdat='';
-    $tipousua='';
-    $perfupdat = @$_GET['perfupdat'];
-
+/**
+ * FASE 1 — Bienvenido.php
+ * Correcciones aplicadas:
+ *  [1] Carga de config central (error reporting, sesión segura)
+ *  [2] Eliminado @$_GET['perfupdat'] — parámetro de token en URL removido
+ *  [3] Verificación de sesión con session_unset antes de destroy
+ *  [4] $tipousua leído de sesión de forma segura (sin @ silenciador)
+ */
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
-   // error_reporting(0);
-    $tipousua= $_SESSION['tipousuario'];
-    /*
-    $_SESSION['usuario']="antoniomorenovillamizar@gmail.com";//inicio sin login
-    $_SESSION['perfil']="Full Perfil";//inicio sin logi
-    $perfil="Full Perfil";//inicio sin logi
-*/
-    if(!isset($_SESSION['usuario'])){
-        echo '
-        <script>
-            alert("Debe iniciar sesión para ver este contenido");
-            window.location = "index.php";
-        </script>
-        ';
-      
-        session_destroy();
-        die();
-    }       
+}
+require_once __DIR__ . '/config/config.php';
+
+// Forzar ocultamiento de errores en pantalla independientemente del php.ini
+ini_set('display_errors', '0');
+ini_set('display_startup_errors', '0');
+
+// [4] Leer tipousuario de forma segura
+$tipousua = isset($_SESSION['tipousuario']) ? $_SESSION['tipousuario'] : '';
+
+// [3] Verificar sesión activa
+if (!isset($_SESSION['usuario'])) {
+    echo '<script>
+        alert("Debe iniciar sesión para ver este contenido.");
+        window.location = "index.php";
+    </script>';
+    session_unset();
+    session_destroy();
+    exit;
+}
+// [2] perfupdat eliminado — el flujo de autenticación ya no usa tokens en URL
 ?>
 <!---->
 <!DOCTYPE html>
@@ -48,24 +54,16 @@
         <?php 
             include 'php/notific_data.php';
             include 'php/seleccion.php';
-			
-            $perfilmenu="dF-g2JTfUerV50F";           
-            $perfilcontador='';
-            if(($noti >=1) && ($perfupdat=="gS5tGN-5DfBTh5gF5R0t"))
-            {
-                $_SESSION['perfilcontador']++;
-                $perfilcontador=$_SESSION['perfilcontador'];
-                if($perfilcontador<=1)
-                {
-                    echo '
-                    <script>
-                        //alert("Gracias!\n\nTienes ('.$perfilcontador.') contador.");
-                        //alert("Por Favor Actualiza los Datos de tu Perfil.\nEn Actualizar Perfil o Notificaciones.\n!Gracias!\n\nTienes ('.$noti.') Notificaciones.");
-                    </script>
-                    ';
-                }
+
+            $perfilcontador = '';
+            // Notificaciones: ya no se usa perfupdat en URL
+            $noti = isset($noti) ? (int)$noti : 0;
+            if ($noti >= 1) {
+                $_SESSION['perfilcontador'] = isset($_SESSION['perfilcontador'])
+                    ? $_SESSION['perfilcontador'] + 1 : 1;
+                $perfilcontador = $_SESSION['perfilcontador'];
             }
-		?>
+        ?>
 <!---->
 <!-------------------------------------------Menú---------------------------------------------------------->
 		<div class="contenedor">

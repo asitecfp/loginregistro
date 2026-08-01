@@ -1,21 +1,33 @@
 <?php
-$VARPHP="VARPHP78";
-@$ruta_img = $_GET["rt"];
-@$nombre_img = $_GET["nt"];
-@$exten_img = $_GET["extn"];
-if (empty($ruta_img)) {	$ruta_img2 = "imagen/perfil.jpg";}else{$ruta_img2 = $ruta_img;}
+/**
+ * FASE 1 — notific_data.php
+ * Correcciones aplicadas:
+ *  [1] session_start() solo si no hay sesión activa
+ *  [2] Eliminado @session_start() silenciador
+ *  [3] Credenciales desde config/config.php vía conexion_bd.php
+ *  [4] $login_usuario escapado antes del query
+ *  [5] Verificación de sesión con header() en lugar de comportamiento silencioso
+ */
 
+if (!defined('DB_HOST')) {
+    require_once __DIR__ . '/../config/config.php';
+}
 
-//
-@session_start();
+// Suprimir display de errores — los errores van al log, no al navegador
+ini_set('display_errors', '0');
+
+// Solo iniciar sesión si no está ya activa
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include 'conexion_bd.php';
 
-    if(isset($_SESSION['usuario'])){
-       // header("location: bienvenido.php");
-    }
-    if($_SESSION['usuario']==''){
-       header("location: ../index.php");
-    }
+// [5] Verificar sesión antes de procesar
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario'] === '') {
+    header('Location: ../index.php');
+    exit;
+}
 	
 
 //DECLARAR VARIABLES
@@ -53,16 +65,13 @@ $notimsj2='';
 //FIN DECLARAR VARIABLES
 
 
-$UsuarioSES=$_SESSION['usuario'];
-//echo 'Usuario '.$UsuarioSES.'<br>';
-$UsuPerfil=$_SESSION['perfil'];
-//echo 'UsuPerfil '.$UsuPerfil.'<br>';
+$UsuarioSES = $_SESSION['usuario'];
+$UsuPerfil  = isset($_SESSION['perfil']) ? $_SESSION['perfil'] : '';
+$login_usuario = $_SESSION['usuario'];
 
-
-$login_usuario=$_SESSION['usuario'];
-//echo 'Usuario '.$login_usuario.'<br>';
-
-$result = mysqli_query($conexion, "SELECT * FROM usuario WHERE corusu01='$login_usuario'");
+// [4] Escape antes del query
+$login_esc = mysqli_real_escape_string($conexion, $login_usuario);
+$result = mysqli_query($conexion, "SELECT * FROM usuario WHERE corusu01='$login_esc'");
 while($row = mysqli_fetch_array($result))
 {
 	$ideusu0=$row["ideusu01"];

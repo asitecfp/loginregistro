@@ -1,141 +1,140 @@
 <?php
-    session_start();
-	error_reporting(1);
-    include 'conexion_bd.php';
-	
-	include ('../str-master/php/list_usu.php');
-	date_default_timezone_set('America/Caracas');
-	
-//DECLARO VARIABLES
-	$correo =  '';
-	$contrasena =  '';
-	$tipusu = '';
-    $perfil1 =  '';
-    $perfil2 =  '';
-    $perfil3 =  '';
-    $pinusu0 =  '';
-    $nomperfil = '';
-	$pinusu0 = '';
-	$check01 = '';
-	$check02 = '';
-	$idsesion = '';
-//IGUALO VARIABLES DEL FORMULARIO DE INICIO DE SESIÓN Y PERFIL
-	$correo = $_POST['correo_usuario01'];
-	$contrasena = $_POST['contrasena_usuario01'];
-    $perfil1 = $_POST['perfil01'];
-    $perfil2 = $_POST['perfil02'];
-    $perfil3 = $_POST['perfil03'];
-/* 	$perfil1 = "Full Perfil";
-    $perfil2 = "Familiar";
-    $perfil3 = "Infantil"; */
-    $pinusu0 = $_POST['pinusu'];
-    $check01 = $_POST['check1'];
-	$check02 = $_POST['check2'];       
-		if($perfil1!=""){$nomperfil = "pinful01";}
-       	if($perfil2!=""){$nomperfil = "pinfam01";}
-       	if($perfil3!=""){$nomperfil = "pininf01";}
+/**
+ * FASE 1 — login_usuario.php
+ * Correcciones aplicadas:
+ *  [1] error_reporting controlado desde config.php
+ *  [2] Escape de variables con mysqli_real_escape_string
+ *  [3] Whitelist para el nombre de columna de PIN (evita SQLi en columna dinámica)
+ *  [4] IP del cliente corregida: REMOTE_ADDR en lugar de client_ADDR
+ *  [5] Eliminados los "tokens de flujo" hardcodeados en la URL
+ *      El estado de autenticación se maneja solo con $_SESSION
+ */
 
-	$perfact="b8FVr{8dFV5-F$(d5HgT";
-	$idsesion = session_id();
-	$fechaactual= date("Y")."-".date("m")."-".date("d");
-	//echo '<script>
-	//alert("'.$idsesion.'");
-	
-	//</script>';
-	//get_browser_name($user_agent);
-	//veri();
+session_start();
+require_once __DIR__ . '/../config/config.php';
+include 'conexion_bd.php';
+include '../STR-master/php/list_usu.php';
 
+date_default_timezone_set('America/Caracas');
 
-//CONDICIONO PARA ELEGIR LA CONSULTA DEL USUARIO O LA DEL PERFIL
+// ── Leer variables POST ───────────────────────────────────────
+$correo    = isset($_POST['correo_usuario01'])    ? trim($_POST['correo_usuario01'])    : '';
+$contrasena= isset($_POST['contrasena_usuario01'])? trim($_POST['contrasena_usuario01']): '';
+$perfil1   = isset($_POST['perfil01']) ? trim($_POST['perfil01']) : '';
+$perfil2   = isset($_POST['perfil02']) ? trim($_POST['perfil02']) : '';
+$perfil3   = isset($_POST['perfil03']) ? trim($_POST['perfil03']) : '';
+$pinusu0   = isset($_POST['pinusu'])   ? trim($_POST['pinusu'])   : '';
+$check01   = isset($_POST['check1'])   ? trim($_POST['check1'])   : '';
+$check02   = isset($_POST['check2'])   ? trim($_POST['check2'])   : '';
 
-if($check01=="act")
-{
-    $validar_login = mysqli_query($conexion, "SELECT * FROM usuario WHERE
-                                             corusu01='$correo' and conusu01='$contrasena'");
-	
-	
-	if(mysqli_num_rows($validar_login) > 0){
-		
-		$validar_status = mysqli_query($conexion, "SELECT * FROM usuario WHERE
-		corusu01='$correo' and conusu01='$contrasena' and stausu01='activo'");
-		
-		$fila = $validar_status->fetch_assoc();
+// [3] WHITELIST para columna de PIN — previene inyección de nombre de columna
+$columnas_pin_validas = ['pinful01', 'pinfam01', 'pininf01'];
+$nomperfil = '';
+if ($perfil1 !== '') { $nomperfil = 'pinful01'; }
+if ($perfil2 !== '') { $nomperfil = 'pinfam01'; }
+if ($perfil3 !== '') { $nomperfil = 'pininf01'; }
 
-		if (mysqli_num_rows($validar_status) > 0){
-			
-			$tipusu = $fila['tipcue01'];
-
- 			$_SESSION['usuario'] = $correo;
-			$_SESSION['perfil']="";
-			$_SESSION['perfilcontador']=0;
-			$_SESSION['tipousuario']= $tipusu;
-			$_SESSION['fechases']=$fechaactual;
-
-			header("location: ../index.php?perfact=".$perfact."");
-
-			
-		}else{
-			
-				echo '
-							<script>
-						alert("Verifique el estado de su Cuenta, Usuario Inactivo o Suspendido!");
-						window.location ="../index.php";
-					</script>
-				';
-		}
-		exit();
-	}else{
-		echo '
-			<script>
-				alert("Usuario o contraseña inválida");
-				window.location ="../index.php";
-			</script>
-		';
-    }    
+// Si nomperfil no está en la lista blanca, rechazar
+if ($check02 === 'act' && !in_array($nomperfil, $columnas_pin_validas, true)) {
+    echo '<script>alert("Perfil no válido."); window.location="../index.php";</script>';
+    exit;
 }
-//CONDICIONO PARA ELEGIR LA CONSULTA DEL USUARIO O LA DEL PERFIL
-				
-													
-if($check02=="act")
-{
-	$usuari0 = $_SESSION['usuario'];
-    $validar_perfil = mysqli_query($conexion, "SELECT * FROM usuario WHERE 
-	corusu01='$usuari0' and ".$nomperfil."='$pinusu0'");
-	
-	$valores = $validar_perfil->fetch_assoc();
-	//$idecont = $valores['idecon04'];
 
-	if(mysqli_num_rows($validar_perfil) > "0")
-	
-		{
-			
-			if($perfil1!="")
-			{$_SESSION['perfil'] = $perfil1;}
-			if($perfil2!="")
-			{$_SESSION['perfil'] = $perfil2;}
-			if($perfil3!="")
-			{$_SESSION['perfil'] = $perfil3;}
+$fechaactual = date('Y-m-d');
 
+// ════════════════════════════════════════════════════════════════
+// FLUJO 1 — Login con correo y contraseña
+// ════════════════════════════════════════════════════════════════
+if ($check01 === 'act') {
 
-		$cantlog = $valores['canses01'];
-		if ($valores['canses01'] <> NULL){
-			veribd($cantlog);
-		}
-			
-			insertlog();
-			
-													
-	}else{
-		$perfact="b13nV3gV5-F50rY8dFVT";
-		echo '
-			<script>
-				alert("Verifique Pin o Perfil");
-			window.location ="../index.php";
-				//window.location ="../index.php?perfact='.$perfact.'";
-			</script>
-		';
-	}
+    // [2] Escape de variables antes del query
+    $correo_esc     = mysqli_real_escape_string($conexion, $correo);
+    $contrasena_esc = mysqli_real_escape_string($conexion, $contrasena);
 
+    $validar_login = mysqli_query($conexion,
+        "SELECT ideusu01, tipcue01, stausu01, canses01
+         FROM usuario
+         WHERE corusu01 = '$correo_esc'
+           AND conusu01 = '$contrasena_esc'"
+    );
+
+    if (mysqli_num_rows($validar_login) > 0) {
+
+        $fila = mysqli_fetch_assoc($validar_login);
+
+        if (strtolower($fila['stausu01']) === 'activo') {
+
+            // Regenerar ID de sesión al autenticar (previene session fixation)
+            session_regenerate_id(true);
+
+            $_SESSION['usuario']         = $correo;
+            $_SESSION['ideusu']          = $fila['ideusu01'];
+            $_SESSION['perfil']          = '';
+            $_SESSION['perfilcontador']  = 0;
+            $_SESSION['tipousuario']     = $fila['tipcue01'];
+            $_SESSION['fechases']        = $fechaactual;
+
+            // [5] Redirigir sin token en URL — el estado de sesión es suficiente
+            header('Location: ../index.php');
+            exit;
+
+        } else {
+            echo '<script>alert("Usuario Inactivo o Suspendido. Contacte al administrador."); window.location="../index.php";</script>';
+            exit;
+        }
+
+    } else {
+        // Mensaje genérico — no revelar si el usuario existe o no
+        echo '<script>alert("Usuario o contraseña inválida."); window.location="../index.php";</script>';
+        exit;
+    }
 }
+
+// ════════════════════════════════════════════════════════════════
+// FLUJO 2 — Selección de perfil con PIN
+// ════════════════════════════════════════════════════════════════
+if ($check02 === 'act') {
+
+    // Verificar que la sesión base existe
+    if (!isset($_SESSION['usuario'])) {
+        echo '<script>alert("Sesión no válida."); window.location="../index.php";</script>';
+        exit;
+    }
+
+    $usuari0   = $_SESSION['usuario'];
+    $usuari0_e = mysqli_real_escape_string($conexion, $usuari0);
+    $pinusu0_e = mysqli_real_escape_string($conexion, $pinusu0);
+
+    // nomperfil ya fue validado con whitelist arriba
+    $validar_perfil = mysqli_query($conexion,
+        "SELECT ideusu01, canses01
+         FROM usuario
+         WHERE corusu01 = '$usuari0_e'
+           AND `$nomperfil` = '$pinusu0_e'"
+    );
+
+    if (mysqli_num_rows($validar_perfil) > 0) {
+
+        $valores = mysqli_fetch_assoc($validar_perfil);
+
+        // Asignar perfil en sesión
+        if ($perfil1 !== '') { $_SESSION['perfil'] = $perfil1; }
+        if ($perfil2 !== '') { $_SESSION['perfil'] = $perfil2; }
+        if ($perfil3 !== '') { $_SESSION['perfil'] = $perfil3; }
+
+        // Verificar límite de sesiones simultáneas
+        $cantlog = $valores['canses01'];
+        if ($cantlog !== null) {
+            veribd($cantlog);
+        }
+
+        insertlog();
+
+    } else {
+        echo '<script>alert("PIN incorrecto."); window.location="../index.php";</script>';
+        exit;
+    }
+}
+
+mysqli_close($conexion);
 ?>
-

@@ -1,7 +1,17 @@
 
 <?php
 header("Content-Type: text/html;charset=utf-8");
-error_reporting(0);
+
+// Suprimir display de errores — los errores van al log, no al navegador
+ini_set('display_errors', '0');
+
+if (!defined('DB_HOST')) {
+    require_once __DIR__ . '/../config/config.php';
+}
+// Solo iniciar sesión si no está activa
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 //$idcon = '';
 //$idcon = $_POST['con'];
 //echo ''.$idcon.'';
@@ -501,7 +511,7 @@ function cargarprincipalserdet($perfil){
     }
 }
 function cargacont($perfil){
-    echo 'entro en funcionn caargacont';
+    // FASE 1: eliminado echo de debug
 
     $mysqli = new mysqli("localhost", "antonio", "*Lm2638220$", "bnucleds");
         if ($mysqli->connect_errno) {
