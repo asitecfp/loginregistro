@@ -1,0 +1,41 @@
+# ══════════════════════════════════════════════════════════════
+# .gitignore — Streaming PRO
+# ══════════════════════════════════════════════════════════════
+
+# ── CRÍTICO: Credenciales — NUNCA subir al repositorio ────────
+config/config.php
+config/*.php
+.env
+.env.*
+
+# ── Base de datos — contiene datos reales de usuarios ─────────
+*.sql
+
+# ── Logs del servidor ─────────────────────────────────────────
+logs/
+*.log
+
+# ── Dependencias de Composer — se reinstalan con composer install
+vendor/
+
+# ── Sistema operativo ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Archivos temporales ───────────────────────────────────────
+*.bak
+*.tmp
+*.orig
+
+# ── Binarios y archivos grandes ───────────────────────────────
+*.rar
+*.zip
+*.apk
+ffmpeg/
+str.apk
+
+# ── Datos sensibles del negocio ───────────────────────────────
+*.xlsx
+*.xls
+bd.xlsx
